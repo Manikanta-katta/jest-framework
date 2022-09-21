@@ -1,0 +1,9 @@
+.card{
+    height: 400px;
+}
+.input{
+    border: solid 2px gray;
+    border-radius: 15px;
+    height: 35px;
+    width: 300px;
+}
