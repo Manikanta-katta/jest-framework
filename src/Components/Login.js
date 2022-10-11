@@ -1,4 +1,4 @@
-
+import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import "./login.css"
 const Login =() =>{
@@ -6,6 +6,9 @@ const Login =() =>{
     const[password,setpassword] = useState("");
     const [errormsg,seterrormsg] = useState("")
     const[passworderrormsg,setpassworderrormsg] = useState("");
+    const [localvalue,setlocalvalue] = useState("");
+
+    const history = useHistory();
 
     const Reset =()=>{
         seterrormsg(" ");
@@ -14,6 +17,12 @@ const Login =() =>{
         setpassword("");
        
     }
+    const localstore= () =>{
+        setlocalvalue(localStorage.setItem("email",email))
+    }
+
+
+
     const clearinputs =() =>{
         setemail("");
         setpassword("");
@@ -32,36 +41,43 @@ const Login =() =>{
         else {
            
            clearinputs();
+           history.push('/dashboard');
+           localstore();
+     
+       
         }
     }
 
 
 
     return(
-        <div class="card shadow w-50 mt-5" > 
-            <div class="cardheader mt-5">
+        <div className="container">
+              <div className="card logincard shadow text-center " > 
+            <div className="cardheader mt-5">
                <h2>Loginpage</h2>
             </div>
-            <div class="cardbody pt-5">
+            <div className="cardbody pt-5">
             <label>Email:</label>
-            <input type="email" placeholder="enter your email" class="input mx-4" value={email} onChange={e=>setemail(e.target.value)}></input>
-            <label class="text-danger">{errormsg}</label>
+            <input type="email" data-testid="emailid" placeholder ="enter your email" className="input mx-4" value={email} onChange={e=>setemail(e.target.value)}></input>
+            <label className="text-danger">{errormsg}</label>
             </div>
          
-            <div>
+            <div >
             <label>password:</label>
-            <input type="password" placeholder="enter your password" class="input mx-4" value={password} onChange={e =>setpassword(e.target.value)}></input>
-            <div> <label class="text-danger">{passworderrormsg}</label></div>
+            <input type="password" placeholder="enter your password" className="input mx-4" value={password} onChange={e =>setpassword(e.target.value)}></input>
+            <div > <label className="text-danger">{passworderrormsg}</label></div>
            
             </div>
-            <div class="">
+            <div >
                 <a href="/#">Forgot password?</a>
             </div>
-            <div class="cardfooter mt-5 ">
-                <button class="px-4 mx-4 bg-success border-0 "data-testid="submit" onClick={submit}>submit</button>
-                <button class="px-4 mx-4 bg-warning border-0" data-testid="reset" onClick={Reset}>Reset</button>
+            <div className="cardfooter mt-5 ">
+                <button className="px-4 mx-4 bg-success border-0 "data-testid="submit" onClick={submit}>submit</button>
+                <button className="px-4 mx-4 bg-warning border-0" data-testid="reset" onClick={Reset}>Reset</button>
             </div>
         </div>
+        </div>
+       
     )
 }
 export default Login;

@@ -4,11 +4,12 @@ import './App.css';
 import Login from './Components/Login';
 import { BrowserRouter as Router,Switch,Route } from 'react-router-dom';
 import Dashboard from './Components/Dashboard';
+import FollowersList from './Components/Followers';
 
 
 function App() {
   return (
-    <div className="App">
+    <div >
       <Router>
 
    <Switch>
@@ -18,11 +19,10 @@ function App() {
           <Route exact path='/dashboard'>
             <Dashboard/>
           </Route>
+          <Route exact path='/followers'>
+            <FollowersList/>
+          </Route>
    </Switch>
- 
-      
-       
-
     
       </Router>
   
